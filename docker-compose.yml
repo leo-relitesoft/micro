@@ -1,0 +1,7 @@
+services:
+  franken:
+    image: micro:latest
+    ports:
+    - 80:80
+    volumes:
+    - ./public:/app/public
