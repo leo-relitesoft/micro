@@ -4,4 +4,8 @@ services:
     ports:
     - 80:80
     volumes:
-    - ./public:/app/public
+    - ./:/app
+    - ./docker/development/Caddyfile:/etc/frankenphp/Caddyfile
+    - ./docker/development/php.ini:/usr/local/etc/php/php.ini
+
+

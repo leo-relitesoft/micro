@@ -1,15 +1,25 @@
 {
     skip_install_trust
 
-    frankenphp {
-
-    }
+	frankenphp {
+		php_ini {
+			xdebug.mode develop,debug
+			xdebug.discover_client_host true
+			xdebug.client_port 9003
+			xdebug.connect_timeout_ms 200
+			xdebug.scream 0
+			xdebug.cli_color 1
+			xdebug.show_local_vars 1
+			xdebug.max_nesting_level 512
+			xdebug.remote_handler dbgp
+			xdebug.idekey phpstorm
+		}
+	}
 }
 
-*:80 {
+
+:80 {
+    root * /app/public
+    php_server
     encode zstd br gzip
-    php_server {
-        try_files {path} index.php
-        root /app/public
-    }
 }
