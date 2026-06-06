@@ -1,2 +1,2 @@
-build:
-	docker build -f ./docker/development/Dockerfile -t micro:latest --progress=plain .
+build-dev:
+	docker build -f ./docker/Dockerfile -t micro:latest --target dev --progress=plain .
