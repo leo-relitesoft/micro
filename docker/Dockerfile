@@ -16,21 +16,21 @@ RUN install-php-extensions xdebug
 
 COPY --from=composer /composer /usr/bin/composer
 COPY /docker/development/Caddyfile /etc/frankenphp/Caddyfile
-COPY  /docker/development/php.ini /usr/local/etc/php/php.ini
+COPY /docker/development/php.ini /usr/local/etc/php/php.ini
 
 #
 # Production
 #
 
 FROM base AS prod-builder
-COPY /production/Caddyfile /
 COPY --from=composer /composer /usr/bin/composer
-COPY .. /app
+COPY ./ /app
 RUN --mount=type=cache,target=/tmp/cache \
     composer install --no-dev --no-progress --no-interaction --classmap-authoritative && \
     rm composer.lock composer.json
 
 FROM base AS prod
 ENV APP_ENV=prod
-COPY --from=prod-builder --chown=www-data:www-data /app /app
-USER www-data
+COPY /docker/production/Caddyfile /etc/frankenphp/Caddyfile
+COPY /docker/production/php.ini /usr/local/etc/php/php.ini
+COPY --from=prod-builder /app /app
