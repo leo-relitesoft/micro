@@ -15,12 +15,15 @@ FROM base AS dev
 RUN install-php-extensions xdebug
 
 COPY --from=composer /composer /usr/bin/composer
+COPY /docker/development/Caddyfile /etc/frankenphp/Caddyfile
+COPY  /docker/development/php.ini /usr/local/etc/php/php.ini
 
 #
 # Production
 #
 
 FROM base AS prod-builder
+COPY /production/Caddyfile /
 COPY --from=composer /composer /usr/bin/composer
 COPY .. /app
 RUN --mount=type=cache,target=/tmp/cache \

@@ -1,0 +1,11 @@
+services:
+  franken:
+    image: micro:latest
+    ports:
+    - 80:80
+    volumes:
+    - ./:/app
+    - ./docker/development/Caddyfile:/etc/frankenphp/Caddyfile
+    - ./docker/development/php.ini:/usr/local/etc/php/php.ini
+
+
