@@ -1,0 +1,10 @@
+.git
+.idea
+tests
+.dockerignore
+Makefile
+docker-compose*
+
+#docker
+#composer.*
+

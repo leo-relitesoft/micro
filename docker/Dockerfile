@@ -32,5 +32,6 @@ RUN --mount=type=cache,target=/tmp/cache \
 FROM base AS prod
 ENV APP_ENV=prod
 COPY /docker/production/Caddyfile /etc/frankenphp/Caddyfile
-COPY /docker/production/php.ini /usr/local/etc/php/php.ini
+# COPY /docker/production/php.ini /usr/local/etc/php/php.ini
 COPY --from=prod-builder /app /app
+RUN rm -rf docker
