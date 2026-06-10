@@ -10,11 +10,16 @@ use App\RequirementsCheck;
 
 $root = dirname(__DIR__);
 
+http_response_code(500);
+
 require $root . '/vendor/autoload.php';
 
 $app = AppFactory::create();
 
+$app->addErrorMiddleware(false, true, true);
+
 $app->get('/{id}', function (Request $request, Response $response, $args){
+    throw new HttpEncodingException('error');
     $res = RequirementsCheck::getMissingModules();
     $response->getBody()->write(json_encode($res, JSON_PRETTY_PRINT));
     return $response->withHeader('Content-type', 'application/json');
