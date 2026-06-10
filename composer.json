@@ -1,21 +1,14 @@
 {
     "name": "leo/service-admin",
     "description": "Site admin backend microservice",
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
+    "config": {
+        "process-timeout" : 0,
+        "sort-packages" : true
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Test\\": "tests/"
-        }
+    "require": {
+        "slim/psr7": "^1.8",
+        "slim/slim": "^4.15"
     },
-    "authors": [
-        {
-            "name": "leo"
-        }
-    ],
     "require-dev": {
         "overtrue/phplint": "^1.2",
         "phpunit/phpunit": "^8.5",
@@ -28,7 +21,16 @@
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "psalm": "psalm",
-        "test": "phpunit --colors=always",
-        "test-unit-coverage": "phpunit --colors=always --testsuite=unit --coverage-html var/coverage",
+        "test": "phpunit --colors=always"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
     }
 }

@@ -2,7 +2,7 @@ services:
   franken:
     image: micro:latest
     ports:
-    - 80:80
+    - 8888:80
     volumes:
     - ./:/app
 

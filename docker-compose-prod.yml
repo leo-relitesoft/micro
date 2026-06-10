@@ -2,5 +2,5 @@ services:
   franken:
     image: micro:prod
     ports:
-      - 80:80
+      - 8888:80
 
