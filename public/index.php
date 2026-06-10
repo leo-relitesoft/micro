@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-use \Psr\Http\Message\ResponseInterface as Response;
-use  Psr\Http\Message\ServerRequestInterface as Request;
+use DI\ContainerBuilder;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\Factory\AppFactory;
-
-use App\RequirementsCheck;
+use Slim\Psr7\Factory\ResponseFactory;
 
 $root = dirname(__DIR__);
 
@@ -14,18 +13,22 @@ http_response_code(500);
 
 require $root . '/vendor/autoload.php';
 
-$app = AppFactory::create();
+$builder = new ContainerBuilder;
+$builder->addDefinitions([
+   'config' => [
+       'debug' => (bool) getenv('APP_DEBUG'),
+   ],
+    ResponseFactoryInterface::class => DI\get(ResponseFactory::class)
 
-$app->addErrorMiddleware((bool)getenv('APP_DEBUG'), true, true);
+]);
 
-$app->get('/{id}', function (Request $request, Response $response, $args){
-    $res = RequirementsCheck::getMissingModules();
-    $response->getBody()->write(json_encode($res, JSON_PRETTY_PRINT));
-    if (getenv('APP_DEBUG')) {
-        $response->getBody()->write("\nDEBUG MODE");
-    }
-    return $response->withHeader('Content-type', 'application/json');
-});
+$container = $builder->build();
+
+$app = AppFactory::createFromContainer($container);
+
+$app->addErrorMiddleware($container->get('config')['debug'], true, true);
+
+$app->get('/{id}', \App\Http\HomeAction::class);
 
 $app->run();
 
