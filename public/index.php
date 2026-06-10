@@ -16,11 +16,14 @@ require $root . '/vendor/autoload.php';
 
 $app = AppFactory::create();
 
-$app->addErrorMiddleware(false, true, true);
+$app->addErrorMiddleware((bool)getenv('APP_DEBUG'), true, true);
 
 $app->get('/{id}', function (Request $request, Response $response, $args){
     $res = RequirementsCheck::getMissingModules();
     $response->getBody()->write(json_encode($res, JSON_PRETTY_PRINT));
+    if (getenv('APP_DEBUG')) {
+        $response->getBody()->write("\nDEBUG MODE");
+    }
     return $response->withHeader('Content-type', 'application/json');
 });
 
