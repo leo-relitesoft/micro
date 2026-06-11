@@ -28,7 +28,7 @@ $app = AppFactory::createFromContainer($container);
 
 $app->addErrorMiddleware($container->get('config')['debug'], true, true);
 
-$app->get('/{id}', \App\Http\HomeAction::class);
+$app->get('/home/{id}', \App\Http\HomeAction::class);
 
 $app->run();
 
