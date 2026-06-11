@@ -25,18 +25,10 @@ class HomeAction implements RequestHandlerInterface
             $res[] = "DEBUG MODE";
         }
 
-
-        $routeContext = RouteContext::fromRequest($request);
-        $route = $routeContext->getRoute();
-
-        if ($route) {
-            // Retrieve all pattern placeholder arguments inside middleware
-            $routeArgs = $route->getArguments();
-            $id = $route->getArgument('id');
-            if ($id) {
-                $res[] = "id: $id";
-            }
+        if ($id = $request->getAttribute('id')) {
+            $res[] = "id: $id";
         }
+
         return new JsonResponse($res);
     }
 }
