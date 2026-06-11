@@ -8,7 +8,7 @@ build-dev:
 	docker build -f ./docker/Dockerfile -t micro:latest --target dev --progress=plain .
 
 composer-init-dev:
-	docker compose exec franken composer install
+	docker compose exec franken composer update
 
 build-prod:
 	docker build -f ./docker/Dockerfile -t micro:prod --target prod --progress=plain .

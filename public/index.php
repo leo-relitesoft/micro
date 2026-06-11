@@ -30,7 +30,7 @@ $app->addMiddleware($container->get(\App\Http\ParseRouteMiddleware::class));
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware($container->get('config')['debug'], true, true);
 
-$app->get('/home/{id}', \App\Http\HomeAction::class);
+$app->get('/home[/{id}]', \App\Http\HomeAction::class);
 
 $app->run();
 
