@@ -13,6 +13,6 @@ class JsonResponse extends Response
     {
         parent::__construct($status, $headers, $body);
         $this->headers->addHeader('Content-type', 'application/json');
-        $this->body->write(json_encode($data, JSON_THROW_ON_ERROR));
+        $this->getBody()->write(json_encode($data, JSON_THROW_ON_ERROR));
     }
 }

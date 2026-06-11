@@ -25,4 +25,5 @@ run-prod:
 run-dev:
 	docker compose -f docker-compose.yml up -d
 
-
+test:
+	docker compose exec franken composer test
