@@ -13,8 +13,10 @@ class HomeAction implements RequestHandlerInterface
 {
 
 
-    public function __construct(private ContainerInterface $container) {
+    public function __construct(private ContainerInterface $container)
+    {
     }
+
     /**
      * @throws \JsonException
      */
