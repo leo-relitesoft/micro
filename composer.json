@@ -3,7 +3,7 @@
     "type": "project",
     "description": "Site admin backend microservice",
     "config": {
-        "process-timeout" : 900,
+        "process-timeout" : 1800,
         "sort-packages" : true,
         "platform": {
             "php": "8.1"

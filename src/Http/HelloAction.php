@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Routing\RouteContext;
 
-class HomeAction implements RequestHandlerInterface
+class HelloAction implements RequestHandlerInterface
 {
 
 
