@@ -6,15 +6,11 @@ FROM dunglas/frankenphp:1.12.4-php8 AS base
 RUN apt update && apt -y install \
     unzip
 
-FROM base AS base-debug
-
-RUN install-php-extensions xdebug
-
 #
 # Development
 #
 
-FROM base-debug AS dev
+FROM franken-debug:latest AS dev
 
 COPY --from=composer /composer /usr/bin/composer
 COPY /docker/development/Caddyfile /etc/frankenphp/Caddyfile
