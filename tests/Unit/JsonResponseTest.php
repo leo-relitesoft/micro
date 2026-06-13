@@ -6,6 +6,11 @@ namespace Test\Unit;
 
 use App\Http\JsonResponse;
 
+/**
+ * Class JsonResponseTest
+ * @package Test\Unit
+ * @covers \App\Http\JsonResponse
+ */
 class JsonResponseTest extends \PHPUnit\Framework\TestCase
 {
 

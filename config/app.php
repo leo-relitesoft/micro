@@ -8,7 +8,3 @@ return static function (\Psr\Container\ContainerInterface $container): \Slim\App
     (require __DIR__ . '/routes.php')($app);
     return $app;
 };
-
-
-
-return $app;

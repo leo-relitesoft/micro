@@ -13,6 +13,9 @@ composer-init-dev:
 build-prod:
 	docker build -f ./docker/Dockerfile -t micro:prod --target prod --progress=plain .
 
+build-debug:
+	 docker build -f ./docker/Franken-debug.Dockerfile -t franken-debug:latest --progress=plain .
+
 builder:
 	docker build -f ./docker/Dockerfile -t micro:builder --target prod-builder --progress=plain .
 
@@ -27,3 +30,12 @@ run-dev:
 
 test:
 	docker compose exec franken composer test
+
+test-unit:
+	docker compose exec franken vendor/bin/phpunit --filter=Unit
+
+test-cover:
+	docker compose exec franken vendor/bin/phpunit --filter=Unit --coverage-html var/coverage
+
+test-func:
+	docker compose exec franken vendor/bin/phpunit --filter=Functional
