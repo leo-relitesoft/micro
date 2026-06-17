@@ -1,5 +1,5 @@
 prod: down build-prod run-prod
-dev: down build-dev run-dev composer-init-dev
+dev: down build-dev run-dev composer-install-dev
 
 down:
 	docker compose down
@@ -9,6 +9,9 @@ build-dev:
 
 composer-init-dev:
 	docker compose exec franken composer update
+
+composer-install-dev:
+	docker compose exec franken composer install
 
 build-prod:
 	docker build -f ./docker/Dockerfile -t micro:prod --target prod --progress=plain .
